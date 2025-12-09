@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 const ADMIN_EMAIL = 'kenshinworkspace@gmail.com';
-const ADMIN_PASSWORD = 'PayF!Dec25';
+const ADMIN_PASSWORD = 'V7kR!2mQ9xL8';
 
 function checkAdminAuth() {
     const isAdmin = localStorage.getItem('payfusion_is_admin') === 'true';
