@@ -47,13 +47,13 @@ service firebase.storage {
 
 // Placeholder - Replace with your Firebase config
 const firebaseConfig = {
-   apiKey: "YOUR_API_KEY",
-   authDomain: "YOUR_PROJECT.firebaseapp.com",
-   projectId: "YOUR_PROJECT_ID",
-   storageBucket: "YOUR_PROJECT.appspot.com",
-   messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-   appId: "YOUR_APP_ID",
-   measurementId: "YOUR_MEASUREMENT_ID"
+    apiKey: "AIzaSyDIJ3MbXnm4_1BwxrsS9Hi4Ac7Zif4RPZo",
+    authDomain: "payfusion-haiti.firebaseapp.com",
+    projectId: "payfusion-haiti",
+    storageBucket: "payfusion-haiti.firebasestorage.app",
+    messagingSenderId: "396341807158",
+    appId: "1:396341807158:web:0bae77c87ac9c094d77097",
+    measurementId: "G-2BGDGZ49VN"
 };
 
 // Initialize Firebase
