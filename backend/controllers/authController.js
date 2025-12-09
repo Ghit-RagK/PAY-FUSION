@@ -1,9 +1,15 @@
-// backend/controllers/authController-simple.js
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
 
+// Configuration
 const JWT_SECRET = process.env.JWT_SECRET || 'payfusion-vercel-secret-2024';
-const SALT_ROUNDS = 10;
+const JWT_EXPIRES_IN = '24h';
+const SALT_ROUNDS = 12;
+
+// Base de données en mémoire pour Vercel
+const usersMemory = [];
+const sessionsMemory = [];
 
 // Base de données en mémoire (pour Vercel)
 const users = [
