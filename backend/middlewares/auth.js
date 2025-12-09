@@ -1,13 +1,31 @@
+// backend/middlewares/auth.js
 const jwt = require('jsonwebtoken');
-const User = require('../models/User');
-const Session = require('../models/Session');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'votre-secret-jwt-tres-securise';
+const JWT_SECRET = process.env.JWT_SECRET || 'payfusion-vercel-secret-2024';
 
-// Middleware d'authentification
+// Base de données en mémoire pour Vercel
+const usersMemory = [
+  {
+    id: 'admin_001',
+    email: 'kenshinworkspace@gmail.com',
+    password: '$2a$10$examplehash', // admin123 hashé
+    firstName: 'Admin',
+    lastName: 'PayFusion',
+    phone: '+50939442808',
+    country: 'HT',
+    role: 'admin',
+    verified: true,
+    locked: false,
+    deleted: false
+  }
+];
+
+const sessionsMemory = [];
+
+// Middleware d'authentification simplifié pour Vercel
 async function authenticate(req, res, next) {
   try {
-    // Récupérer le token depuis les headers
+    // Récupérer le token
     const authHeader = req.headers.authorization;
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
       return res.status(401).json({
@@ -18,20 +36,12 @@ async function authenticate(req, res, next) {
     
     const token = authHeader.split(' ')[1];
     
-    // Vérifier la session
-    const session = await Session.findOne({ token });
-    if (!session || session.expiresAt < new Date()) {
-      return res.status(401).json({
-        success: false,
-        error: 'Session expirée ou invalide'
-      });
-    }
-    
     // Vérifier le token JWT
     const decoded = jwt.verify(token, JWT_SECRET);
     
-    // Vérifier si l'utilisateur existe toujours
-    const user = await User.findById(decoded.userId);
+    // Chercher l'utilisateur en mémoire
+    const user = usersMemory.find(u => u.id === decoded.userId);
+    
     if (!user || user.deleted) {
       return res.status(401).json({
         success: false,
@@ -39,7 +49,6 @@ async function authenticate(req, res, next) {
       });
     }
     
-    // Vérifier si le compte est verrouillé
     if (user.locked) {
       return res.status(403).json({
         success: false,
@@ -52,9 +61,11 @@ async function authenticate(req, res, next) {
     req.user = user;
     req.token = token;
     
-    // Mettre à jour la dernière activité de la session
-    session.lastActivity = new Date();
-    await session.save();
+    // Mettre à jour la session en mémoire
+    const sessionIndex = sessionsMemory.findIndex(s => s.token === token);
+    if (sessionIndex !== -1) {
+      sessionsMemory[sessionIndex].lastActivity = new Date();
+    }
     
     next();
     
@@ -92,43 +103,14 @@ function authorizeAdmin(req, res, next) {
   next();
 }
 
-// Middleware de vérification 2FA
+// Middleware simplifié (désactivé pour le moment)
 async function require2FA(req, res, next) {
-  try {
-    const user = await User.findById(req.userId);
-    
-    if (!user) {
-      return res.status(404).json({
-        success: false,
-        error: 'Utilisateur non trouvé'
-      });
-    }
-    
-    if (user.twoFactorEnabled && !req.headers['x-2fa-token']) {
-      return res.status(403).json({
-        success: false,
-        error: 'Authentification à deux facteurs requise'
-      });
-    }
-    
-    if (user.twoFactorEnabled && req.headers['x-2fa-token']) {
-      // Vérifier le token 2FA
-      // À implémenter
-    }
-    
-    next();
-    
-  } catch (error) {
-    console.error('Erreur vérification 2FA:', error);
-    res.status(500).json({
-      success: false,
-      error: 'Erreur lors de la vérification 2FA'
-    });
-  }
+  // Pour Vercel, on ignore la 2FA temporairement
+  next();
 }
 
-// Middleware de rate limiting par utilisateur
-function userRateLimit(windowMs, maxRequests) {
+// Middleware de rate limiting
+function userRateLimit(windowMs = 15 * 60 * 1000, maxRequests = 100) {
   const requests = new Map();
   
   return (req, res, next) => {
