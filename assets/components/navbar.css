@@ -1,0 +1,112 @@
+/* Navigation principale déjà dans header.css */
+/* Ce fichier est pour les navigations secondaires */
+
+.secondary-nav {
+  background-color: var(--bg-light);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.secondary-nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  padding: 1rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  overflow-x: auto;
+}
+
+.secondary-nav a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 0;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.secondary-nav a:hover,
+.secondary-nav a.active {
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+}
+
+/* Navigation en onglets */
+.tab-nav {
+  display: flex;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 2rem;
+}
+
+.tab-nav button {
+  background: none;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  color: var(--text-light);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.tab-nav button:hover {
+  color: var(--primary-color);
+}
+
+.tab-nav button.active {
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+  font-weight: 600;
+}
+
+/* Navigation latérale */
+.sidebar-nav {
+  width: 250px;
+  background-color: var(--bg-light);
+  border-right: 1px solid var(--border-color);
+  padding: 2rem 0;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+}
+
+.sidebar-nav li {
+  margin-bottom: 0.5rem;
+}
+
+.sidebar-nav a {
+  display: block;
+  padding: 0.75rem 2rem;
+  color: var(--text-color);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.sidebar-nav a:hover {
+  background-color: rgba(0, 87, 255, 0.1);
+  color: var(--primary-color);
+}
+
+.sidebar-nav a.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-right: 3px solid var(--primary-dark);
+}
+
+@media (max-width: 768px) {
+  .tab-nav {
+    overflow-x: auto;
+  }
+  
+  .tab-nav button {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .sidebar-nav {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+}

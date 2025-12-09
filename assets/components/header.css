@@ -1,0 +1,208 @@
+.main-header {
+  background-color: var(--bg-color);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 40px;
+  width: auto;
+}
+
+/* Bouton Menu Burger */
+.menu-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 24px;
+  z-index: 1001;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: var(--text-color);
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Navigation principale */
+.main-nav {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 300px;
+  height: 100vh;
+  background-color: var(--bg-color);
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  transition: left 0.3s ease;
+  z-index: 1000;
+  padding-top: 80px;
+  overflow-y: auto;
+}
+
+.main-nav.active {
+  left: 0;
+}
+
+.main-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.main-nav li {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.main-nav li:last-child {
+  border-bottom: none;
+}
+
+.main-nav a {
+  display: block;
+  padding: 1rem 1.5rem;
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.main-nav a:hover {
+  background-color: rgba(0, 87, 255, 0.05);
+  color: var(--primary-color);
+}
+
+.main-nav a.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-left: 4px solid var(--primary-dark);
+}
+
+/* Overlay */
+.nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
+}
+
+.nav-overlay.active {
+  display: block;
+}
+
+/* Auth buttons dans le menu burger */
+.main-nav .auth-buttons {
+  padding: 1.5rem;
+  border-top: 1px solid var(--border-color);
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.main-nav .auth-buttons .btn {
+  width: 100%;
+  text-align: center;
+}
+
+/* Auth buttons en version desktop (pour écrans larges) */
+.auth-buttons-desktop {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .menu-toggle {
+    display: none;
+  }
+  
+  .main-nav {
+    position: static;
+    width: auto;
+    height: auto;
+    background: none;
+    box-shadow: none;
+    padding-top: 0;
+    overflow: visible;
+    left: 0;
+  }
+  
+  .main-nav ul {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .main-nav li {
+    border-bottom: none;
+  }
+  
+  .main-nav a {
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+  }
+  
+  .main-nav a.active {
+    border-left: none;
+    background-color: var(--primary-color);
+    color: white;
+  }
+  
+  .auth-buttons-desktop {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .main-nav .auth-buttons {
+    display: none;
+  }
+}
+
+/* Responsive header */
+@media (max-width: 768px) {
+  .header-container {
+    padding: 1rem;
+  }
+  
+  .auth-buttons-desktop {
+    display: none;
+  }
+}
