@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self'">
+    <title>Crypto - Pay Fusion</title>
+    <link rel="stylesheet" href="/assets/css/global.css">
+    <link rel="stylesheet" href="/assets/css/crypto.css">
+    <link rel="stylesheet" href="/assets/components/header.css">
+    <link rel="stylesheet" href="/assets/components/footer.css">
+    <link rel="stylesheet" href="/assets/components/navbar.css">
+    <link rel="stylesheet" href="/assets/components/buttons.css">
+    <link rel="stylesheet" href="/assets/components/forms.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-container">
+            <a href="/" class="logo">
+                <img src="/assets/images/payfusion-logo.png" alt="Pay Fusion Logo" width="120" height="40">
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/">Accueil</a></li>
+                    <li><a href="/about.html">À propos</a></li>
+                    <li><a href="/services.html">Services</a></li>
+                    <li><a href="/crypto.html" class="active">Crypto</a></li>
+                    <li><a href="/freefire.html">Free Fire</a></li>
+                    <li><a href="/wallet.html">Wallet</a></li>
+                    <li><a href="/payment.html">Paiement</a></li>
+                    <li><a href="/support.html">Support</a></li>
+                    <li><a href="/account.html">Mon Compte</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="/login.html" class="btn btn-outline">Connexion</a>
+                <a href="/register.html" class="btn btn-primary">Inscription</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="crypto-container">
+        <section class="crypto-hero">
+            <h1>Transactions Cryptomonnaies</h1>
+            <p class="hero-subtitle">Envoyez et recevez des cryptomonnaies en toute sécurité avec Pay Fusion</p>
+        </section>
+
+        <section class="crypto-address">
+            <div class="container">
+                <div class="address-card">
+                    <h2>Notre Adresse USDT (TRC20)</h2>
+                    <div class="address-display">
+                        <code id="usdt-address">TJHVCbXMBQdtzurHngB1aXSFkR9TWYvZ94</code>
+                        <button class="btn btn-outline btn-small" onclick="copyAddress()">Copier</button>
+                    </div>
+                    <div class="address-info">
+                        <p><strong>Réseau:</strong> TRC20 (Tron)</p>
+                        <p><strong>Type:</strong> USDT (Tether)</p>
+                        <p><strong>Destinataire:</strong> Bien Aimé Marcco</p>
+                        <p class="warning">⚠️ N'envoyez que des USDT sur le réseau TRC20 à cette adresse</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="crypto-form-section">
+            <div class="container">
+                <div class="form-container">
+                    <h2>Déposer des Cryptomonnaies</h2>
+                    <form id="crypto-form" class="crypto-form">
+                        <div class="form-group">
+                            <label for="network">Réseau *</label>
+                            <select id="network" name="network" required>
+                                <option value="">Sélectionnez un réseau</option>
+                                <option value="TRC20">TRC20 (Tron) - Recommandé</option>
+                                <option value="ERC20">ERC20 (Ethereum)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="amount">Montant USDT *</label>
+                            <input type="number" id="amount" name="amount" step="0.01" min="10" required placeholder="Ex: 100.00">
+                            <small>Minimum: 10 USDT</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sender-address">Votre Adresse Expéditeur *</label>
+                            <input type="text" id="sender-address" name="sender_address" required placeholder="Ex: Txxxx...">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="transaction-hash">Hash de Transaction *</label>
+                            <input type="text" id="transaction-hash" name="transaction_hash" required placeholder="Ex: 0x123...">
+                            <small>Le hash de la transaction blockchain est obligatoire pour vérification</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="proof">Preuve de Transaction (Optionnel)</label>
+                            <input type="file" id="proof" name="proof" accept=".png,.jpg,.jpeg,.pdf">
+                            <small>Formats acceptés: PNG, JPG, PDF (max 5Mo)</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="order-id">ID Commande</label>
+                            <input type="text" id="order-id" name="order_id" readonly value="CRYPTO-<?php echo time(); ?>-<?php echo rand(1000,9999); ?>">
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms">Je certifie avoir envoyé les fonds à l'adresse indiquée et que toutes les informations fournies sont exactes</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-full">Soumettre la Transaction</button>
+                    </form>
+                </div>
+
+                <div class="crypto-info">
+                    <h3>Instructions Importantes</h3>
+                    <ol class="instructions">
+                        <li>Envoyez uniquement des USDT (Tether) à notre adresse</li>
+                        <li>Sélectionnez le bon réseau (TRC20 recommandé pour frais réduits)</li>
+                        <li>Notez le hash de votre transaction - il est obligatoire</li>
+                        <li>Ne quittez pas cette page avant d'avoir complété le formulaire</li>
+                        <li>Votre transaction sera vérifiée manuellement par notre équipe</li>
+                    </ol>
+
+                    <div class="processing-info">
+                        <h4>Temps de Traitement</h4>
+                        <ul>
+                            <li>TRC20: 2-10 confirmations (5-30 minutes)</li>
+                            <li>ERC20: 12-30 confirmations (10-60 minutes)</li>
+                            <li>Validation manuelle: 1-6 heures (jours ouvrables)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="crypto-workflow">
+            <div class="container">
+                <h2>Processus de Vérification</h2>
+                <div class="workflow-steps">
+                    <div class="step">
+                        <div class="step-icon">🔍</div>
+                        <h3>Vérification Blockchain</h3>
+                        <p>Nous vérifions la transaction sur le blockchain explorer</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">📋</div>
+                        <h3>Validation Données</h3>
+                        <p>Correspondance entre les données fournies et la transaction</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">👨‍💼</div>
+                        <h3>Approbation Admin</h3>
+                        <p>Validation manuelle par notre équipe de sécurité</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">💰</div>
+                        <h3>Crédit Wallet</h3>
+                        <p>Les fonds sont crédités sur votre portefeuille Pay Fusion</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <img src="/assets/images/payfusion-logo.png" alt="Pay Fusion" class="footer-logo" width="100" height="35">
+                <p>Votre solution de paiement sécurisée et multifonctionnelle</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="/">Accueil</a></li>
+                    <li><a href="/about.html">À propos</a></li>
+                    <li><a href="/services.html">Services</a></li>
+                    <li><a href="/crypto.html">Crypto</a></li>
+                    <li><a href="/freefire.html">Free Fire</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="/support.html">Centre d'aide</a></li>
+                    <li><a href="/legal.html">Mentions légales</a></li>
+                    <li><a href="/legal.html">Confidentialité</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>support@payfusion.com</p>
+                <p>+509 0000 0000</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Pay Fusion. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script>
+        function copyAddress() {
+            const address = document.getElementById('usdt-address').textContent;
+            navigator.clipboard.writeText(address).then(() => {
+                alert('Adresse copiée dans le presse-papier!');
+            });
+        }
+
+        document.getElementById('crypto-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validation front-end
+            const amount = parseFloat(document.getElementById('amount').value);
+            if (amount < 10) {
+                alert('Le montant minimum est de 10 USDT');
+                return;
+            }
+
+            const hash = document.getElementById('transaction-hash').value;
+            if (!hash.startsWith('0x') && !hash.startsWith('T') && hash.length < 10) {
+                alert('Veuillez entrer un hash de transaction valide');
+                return;
+            }
+
+            // Simulation de soumission
+            if (confirm('Confirmer la soumission de la transaction?')) {
+                alert('Transaction soumise! Notre équipe va la vérifier manuellement.');
+                this.reset();
+                // Générer un nouvel ID de commande
+                document.getElementById('order-id').value = `CRYPTO-${Date.now()}-${Math.floor(Math.random() * 9000) + 1000}`;
+            }
+        });
+    </script>
+</body>
+</html>

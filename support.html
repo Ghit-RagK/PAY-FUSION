@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self'">
+    <title>Support - Pay Fusion</title>
+    <link rel="stylesheet" href="/assets/css/global.css">
+    <link rel="stylesheet" href="/assets/css/support.css">
+    <link rel="stylesheet" href="/assets/components/header.css">
+    <link rel="stylesheet" href="/assets/components/footer.css">
+    <link rel="stylesheet" href="/assets/components/navbar.css">
+    <link rel="stylesheet" href="/assets/components/buttons.css">
+    <link rel="stylesheet" href="/assets/components/forms.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-container">
+            <a href="/" class="logo">
+                <img src="/assets/images/payfusion-logo.png" alt="Pay Fusion Logo" width="120" height="40">
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/">Accueil</a></li>
+                    <li><a href="/about.html">À propos</a></li>
+                    <li><a href="/services.html">Services</a></li>
+                    <li><a href="/crypto.html">Crypto</a></li>
+                    <li><a href="/freefire.html">Free Fire</a></li>
+                    <li><a href="/wallet.html">Wallet</a></li>
+                    <li><a href="/payment.html">Paiement</a></li>
+                    <li><a href="/support.html" class="active">Support</a></li>
+                    <li><a href="/account.html">Mon Compte</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="/login.html" class="btn btn-outline">Connexion</a>
+                <a href="/register.html" class="btn btn-primary">Inscription</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="support-container">
+        <section class="support-hero">
+            <h1>Centre d'Aide</h1>
+            <p class="hero-subtitle">Nous sommes là pour vous aider 24/7</p>
+        </section>
+
+        <section class="faq-section">
+            <div class="container">
+                <h2>Questions Fréquentes</h2>
+                <div class="faq-grid">
+                    <div class="faq-category">
+                        <h3>Compte & Sécurité</h3>
+                        <div class="faq-item">
+                            <div class="faq-question">Comment créer un compte?</div>
+                            <div class="faq-answer">Cliquez sur "Inscription" en haut à droite, remplissez le formulaire et validez votre email.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">Comment activer la 2FA?</div>
+                            <div class="faq-answer">Dans "Mon Compte" → "Sécurité" → "Authentification à deux facteurs".</div>
+                        </div>
+                    </div>
+
+                    <div class="faq-category">
+                        <h3>Paiements</h3>
+                        <div class="faq-item">
+                            <div class="faq-question">Combien de temps pour valider un paiement?</div>
+                            <div class="faq-answer">Généralement 1-6 heures pendant les jours ouvrables après soumission complète.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">Quels sont les frais?</div>
+                            <div class="faq-answer">Pas de frais pour les dépôts. Retraits: 2% (min 50 HTG). Conversion: 0.5%.</div>
+                        </div>
+                    </div>
+
+                    <div class="faq-category">
+                        <h3>Free Fire</h3>
+                        <div class="faq-item">
+                            <div class="faq-question">Quand recevrai-je mes diamants?</div>
+                            <div class="faq-answer">Sous 1-6 heures après validation manuelle par notre équipe.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">Que faire si je reçois pas mes diamants?</div>
+                            <div class="faq-answer">Contactez-nous avec votre ID de commande dans le chat de support.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-methods">
+                        <h2>Contactez-nous</h2>
+                        <div class="contact-method">
+                            <h3>Email</h3>
+                            <p>support@payfusion.com</p>
+                            <small>Réponse sous 24h</small>
+                        </div>
+                        <div class="contact-method">
+                            <h3>Téléphone</h3>
+                            <p>+509 0000 0000</p>
+                            <small>Lun-Ven: 9h-17h</small>
+                        </div>
+                        <div class="contact-method">
+                            <h3>Chat en Direct</h3>
+                            <p>Disponible 24/7</p>
+                            <button class="btn btn-primary" onclick="openChat()">Ouvrir le Chat</button>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-container">
+                        <h2>Formulaire de Contact</h2>
+                        <form id="contact-form" class="contact-form">
+                            <div class="form-group">
+                                <label for="name">Nom Complet *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="subject">Sujet *</label>
+                                <select id="subject" name="subject" required>
+                                    <option value="">Sélectionnez un sujet</option>
+                                    <option value="account">Problème de compte</option>
+                                    <option value="payment">Problème de paiement</option>
+                                    <option value="freefire">Recharge Free Fire</option>
+                                    <option value="security">Sécurité</option>
+                                    <option value="other">Autre</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="order-id">ID de Commande (Optionnel)</label>
+                                <input type="text" id="order-id" name="order_id" placeholder="Ex: PAY-123456-7890">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Message *</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="attachment">Pièce jointe (Optionnel)</label>
+                                <input type="file" id="attachment" name="attachment" accept=".png,.jpg,.jpeg,.pdf,.txt">
+                                <small>Max 5Mo - Formats: PNG, JPG, PDF, TXT</small>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Envoyer</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="chat-window" id="chat-window" style="display: none;">
+            <div class="chat-header">
+                <h3>Support en Direct</h3>
+                <button class="btn btn-outline btn-small" onclick="closeChat()">Fermer</button>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="message system">
+                    <div class="message-content">Bonjour! Comment pouvons-nous vous aider aujourd'hui?</div>
+                    <div class="message-time">Juste maintenant</div>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chat-input" placeholder="Tapez votre message...">
+                <button class="btn btn-primary" onclick="sendMessage()">Envoyer</button>
+            </div>
+        </section>
+    </main>
+
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h4>Services</h4>
+            <ul>
+                <li><a href="/wallet.html">Wallet Multidevises</a></li>
+                <li><a href="/crypto.html">Transactions Crypto</a></li>
+                <li><a href="/freefire.html">Recharges Free Fire</a></li>
+                <li><a href="/payment.html">Paiements Locaux</a></li>
+                <li><a href="/services.html">Voir tous les services</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Support</h4>
+            <ul>
+                <li><a href="/support.html">Centre d'aide</a></li>
+                <li><a href="/legal.html">Conditions d'utilisation</a></li>
+                <li><a href="/legal.html">Politique de confidentialité</a></li>
+                <li><a href="/legal.html">Politique AML/KYC</a></li>
+                <li><a href="/support.html#faq">FAQ</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Contact</h4>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" width="16" height="16">
+                    </div>
+                    <div class="contact-text">
+                        <strong>Support Email</strong>
+                        <span>payfusionhaiti@gmail.com</span>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <img src="https://cdn-icons-png.flaticon.com/512/455/455705.png" alt="Phone" width="16" height="16">
+                    </div>
+                    <div class="contact-text">
+                        <strong>Téléphone Support</strong>
+                        <span>+509 3944 2808</span>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" alt="Hours" width="16" height="16">
+                    </div>
+                    <div class="contact-text">
+                        <strong>Heures d'ouverture</strong>
+                        <span>Lun - Ven: 8h - 18h<br>Samedi: 9h - 14h</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="social-links">
+                <a href="#" class="social-link" aria-label="WhatsApp">
+                    <img src="https://cdn-icons-png.flaticon.com/512/220/220236.png" alt="WhatsApp" width="20" height="20">
+                </a>
+                <a href="#" class="social-link" aria-label="Facebook">
+                    <img src="https://cdn-icons-png.flaticon.com/512/220/220200.png" alt="Facebook" width="20" height="20">
+                </a>
+                <a href="#" class="social-link" aria-label="Instagram">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" width="20" height="20">
+                </a>
+                <a href="#" class="social-link" aria-label="Telegram">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" width="20" height="20">
+                </a>
+            </div>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Méthodes de Paiement</h4>
+            <div class="payment-methods-footer">
+                <p>Nous acceptons:</p>
+                <div class="payment-icons">
+                    <div class="payment-icon">
+                        <img src="/assets/images/moncash-logo.png" alt="MonCash">
+                    </div>
+                    <div class="payment-icon">
+                        <img src="/assets/images/natcash-logo.png" alt="NatCash">
+                    </div>
+                    <div class="payment-icon">
+                        <img src="/assets/images/usdt-logo.png" alt="USDT">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="newsletter">
+                <h4>Newsletter</h4>
+                <p>Recevez les dernières offres et nouveautés</p>
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="Votre email" required>
+                    <button type="submit" class="newsletter-btn">S'abonner</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2024 Pay Fusion. Tous droits réservés.</p>
+        <div class="footer-bottom-links">
+            <a href="/legal.html">Mentions légales</a>
+            <a href="/legal.html#privacy">Confidentialité</a>
+            <a href="/legal.html#cookies">Cookies</a>
+            <a href="/support.html#contact">Nous contacter</a>
+        </div>
+    </div>
+</footer>

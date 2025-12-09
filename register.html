@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self'">
+    <title>Inscription - Pay Fusion</title>
+    <link rel="stylesheet" href="/assets/css/global.css">
+    <link rel="stylesheet" href="/assets/css/register.css">
+    <link rel="stylesheet" href="/assets/components/buttons.css">
+    <link rel="stylesheet" href="/assets/components/forms.css">
+</head>
+<body>
+    <div class="register-page">
+        <header class="register-header">
+            <a href="/" class="logo">
+                <img src="/assets/images/payfusion-logo.png" alt="Pay Fusion" width="150" height="50">
+            </a>
+        </header>
+
+        <main class="register-container">
+            <div class="register-card">
+                <h1>Créer un Compte Pay Fusion</h1>
+                <p class="register-subtitle">Rejoignez notre communauté sécurisée</p>
+
+                <form id="register-form" class="register-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="first-name">Prénom *</label>
+                            <input type="text" id="first-name" name="first_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name">Nom *</label>
+                            <input type="text" id="last-name" name="last_name" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                        <small>Ce sera votre identifiant de connexion</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Téléphone *</label>
+                        <input type="tel" id="phone" name="phone" required pattern="\+509[0-9]{8}" placeholder="+509XXXXXXXX">
+                        <small>Format: +509XXXXXXXX</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Mot de passe *</label>
+                        <input type="password" id="password" name="password" required minlength="8">
+                        <div class="password-strength" id="password-strength">
+                            <div class="strength-bar"></div>
+                            <span class="strength-text">Faible</span>
+                        </div>
+                        <small>Minimum 8 caractères avec majuscule, minuscule et chiffre</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm-password">Confirmer le mot de passe *</label>
+                        <input type="password" id="confirm-password" name="confirm_password" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="country">Pays *</label>
+                        <select id="country" name="country" required>
+                            <option value="">Sélectionnez votre pays</option>
+                            <option value="HT" selected>Haïti</option>
+                            <option value="US">États-Unis</option>
+                            <option value="CA">Canada</option>
+                            <option value="FR">France</option>
+                            <option value="other">Autre</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">J'accepte les <a href="/legal.html" target="_blank">conditions d'utilisation</a> et la <a href="/legal.html" target="_blank">politique de confidentialité</a> *</label>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="newsletter" name="newsletter">
+                        <label for="newsletter">Je souhaite recevoir les newsletters et offres promotionnelles</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-full">Créer mon compte</button>
+
+                    <div class="form-footer">
+                        <p>Déjà un compte? <a href="/login.html">Se connecter</a></p>
+                    </div>
+                </form>
+            </div>
+
+            <div class="register-benefits">
+                <h2>Avantages de Pay Fusion</h2>
+                <div class="benefits-list">
+                    <div class="benefit">
+                        <h3>🎁 Bonus de Bienvenue</h3>
+                        <p>50 HTG offerts après votre première transaction vérifiée</p>
+                    </div>
+                    <div class="benefit">
+                        <h3>🔐 Sécurité Garantie</h3>
+                        <p>Protection avancée contre la fraude et assurance des transactions</p>
+                    </div>
+                    <div class="benefit">
+                        <h3>💳 Portefeuille Multidevises</h3>
+                        <p>HTG, USD, CAD avec conversion automatique et taux compétitifs</p>
+                    </div>
+                    <div class="benefit">
+                        <h3>⚡ Support 24/7</h3>
+                        <p>Assistance technique disponible à tout moment</p>
+                    </div>
+                    <div class="benefit">
+                        <h3>🎮 Free Fire VIP</h3>
+                        <p>Accès à des packs exclusifs et bonus supplémentaires</p>
+                    </div>
+                    <div class="benefit">
+                        <h3>📈 Croissance</h3>
+                        <p>Programme de fidélité avec récompenses et réductions</p>
+                    </div>
+                </div>
+
+                <div class="security-features">
+                    <h3>Nos Mesures de Sécurité</h3>
+                    <ul>
+                        <li>Chiffrement SSL/TLS 256-bit</li>
+                        <li>Authentification à deux facteurs</li>
+                        <li>Surveillance anti-fraude 24/7</li>
+                        <li>Sauvegardes régulières</li>
+                        <li>Audits de sécurité indépendants</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <footer class="register-footer">
+            <p>&copy; 2024 Pay Fusion. Tous droits réservés.</p>
+            <p><a href="/legal.html">Mentions légales</a> | <a href="/legal.html">Confidentialité</a> | <a href="/support.html">Support</a></p>
+        </footer>
+    </div>
+
+    <script src="/js/auth.js"></script>
+</body>
+</html>

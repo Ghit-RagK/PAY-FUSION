@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self'">
+    <title>Free Fire - Pay Fusion</title>
+    <link rel="stylesheet" href="/assets/css/global.css">
+    <link rel="stylesheet" href="/assets/css/freefire.css">
+    <link rel="stylesheet" href="/assets/components/header.css">
+    <link rel="stylesheet" href="/assets/components/footer.css">
+    <link rel="stylesheet" href="/assets/components/navbar.css">
+    <link rel="stylesheet" href="/assets/components/buttons.css">
+    <link rel="stylesheet" href="/assets/components/forms.css">
+    <link rel="stylesheet" href="/assets/components/card.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-container">
+            <a href="/" class="logo">
+                <img src="/assets/images/payfusion-logo.png" alt="Pay Fusion Logo" width="120" height="40">
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/">Accueil</a></li>
+                    <li><a href="/about.html">À propos</a></li>
+                    <li><a href="/services.html">Services</a></li>
+                    <li><a href="/crypto.html">Crypto</a></li>
+                    <li><a href="/freefire.html" class="active">Free Fire</a></li>
+                    <li><a href="/wallet.html">Wallet</a></li>
+                    <li><a href="/payment.html">Paiement</a></li>
+                    <li><a href="/support.html">Support</a></li>
+                    <li><a href="/account.html">Mon Compte</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="/login.html" class="btn btn-outline">Connexion</a>
+                <a href="/register.html" class="btn btn-primary">Inscription</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="freefire-container">
+        <section class="freefire-hero">
+            <div class="hero-content">
+                <h1>Recharges Free Fire</h1>
+                <p class="hero-subtitle">Diamants avec bonus exclusifs - Recharges instantanées garanties</p>
+                <img src="/assets/images/freefire-logo.png" alt="Free Fire" class="game-logo" width="120" height="120">
+            </div>
+        </section>
+
+        <section class="packs-section">
+            <div class="container">
+                <h2 class="section-title">Packs de Diamants</h2>
+                <div class="packs-grid" id="packs-grid">
+                    <!-- Les packs seront générés par JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <section class="subscriptions-section">
+            <div class="container">
+                <h2 class="section-title">Abonnements</h2>
+                <div class="subscriptions-grid">
+                    <div class="subscription-card">
+                        <h3>Abonnement Hebdomadaire</h3>
+                        <div class="price">325 HTG</div>
+                        <ul class="features">
+                            <li>Diamants quotidiens</li>
+                            <li>Bonus exclusif</li>
+                            <li>Support prioritaire</li>
+                            <li>Renouvellement automatique</li>
+                        </ul>
+                        <button class="btn btn-primary" onclick="selectSubscription('weekly')">Sélectionner</button>
+                    </div>
+
+                    <div class="subscription-card">
+                        <h3>Abonnement Mensuel</h3>
+                        <div class="price">1600 HTG</div>
+                        <ul class="features">
+                            <li>Diamants quotidiens</li>
+                            <li>Bonus exclusif x2</li>
+                            <li>Support prioritaire 24/7</li>
+                            <li>Renouvellement automatique</li>
+                            <li>Cadeau surprise mensuel</li>
+                        </ul>
+                        <button class="btn btn-primary" onclick="selectSubscription('monthly')">Sélectionner</button>
+                    </div>
+
+                    <div class="subscription-card">
+                        <h3>Level Pass</h3>
+                        <div class="price">950 HTG</div>
+                        <div class="badge">LIMITÉ</div>
+                        <ul class="features">
+                            <li>Level Pass Complet</li>
+                            <li>Récompenses exclusives</li>
+                            <li>Avantages premium</li>
+                            <li>Accès anticipé</li>
+                        </ul>
+                        <button class="btn btn-primary" onclick="selectSubscription('levelpass')">Sélectionner</button>
+                        <p class="note">LEVEL PASS DISPO PA KONT</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="order-section">
+            <div class="container">
+                <div class="order-form-container">
+                    <h2>Formulaire de Commande</h2>
+                    <form id="freefire-form" class="freefire-form">
+                        <div class="form-group">
+                            <label for="player-id">ID Joueur Free Fire *</label>
+                            <input type="text" id="player-id" name="player_id" required placeholder="Ex: 1234567890" pattern="[0-9]{6,12}">
+                            <small>Votre ID joueur (6-12 chiffres)</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="order-type">Type de Commande *</label>
+                            <select id="order-type" name="order_type" required>
+                                <option value="">Sélectionnez un type</option>
+                                <option value="pack">Pack de Diamants</option>
+                                <option value="weekly">Abonnement Hebdomadaire</option>
+                                <option value="monthly">Abonnement Mensuel</option>
+                                <option value="levelpass">Level Pass</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" id="pack-select-group" style="display: none;">
+                            <label for="pack-select">Sélectionnez un Pack *</label>
+                            <select id="pack-select" name="pack_id">
+                                <option value="">Choisissez un pack</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="selected-pack-info">Pack Sélectionné</label>
+                            <div id="selected-pack-info" class="selected-info">
+                                Aucun pack sélectionné
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="total-amount">Montant Total</label>
+                            <div class="amount-display">
+                                <span id="total-amount">0</span> HTG
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="payment-method">Méthode de Paiement *</label>
+                            <select id="payment-method" name="payment_method" required>
+                                <option value="">Sélectionnez</option>
+                                <option value="moncash">MonCash</option>
+                                <option value="natcash">NatCash</option>
+                                <option value="crypto">Crypto (USDT)</option>
+                                <option value="wallet">Wallet Pay Fusion</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="order-id">ID Commande</label>
+                            <input type="text" id="order-id" name="order_id" readonly value="FF-<?php echo time(); ?>-<?php echo rand(1000,9999); ?>">
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms">Je confirme que l'ID joueur est correct et j'accepte les conditions</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-full">Procéder au Paiement</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="instructions-section">
+            <div class="container">
+                <h2>Comment ça marche?</h2>
+                <div class="instructions-steps">
+                    <div class="instruction-step">
+                        <div class="step-number">1</div>
+                        <h3>Sélectionnez</h3>
+                        <p>Choisissez votre pack ou abonnement</p>
+                    </div>
+                    <div class="instruction-step">
+                        <div class="step-number">2</div>
+                        <h3>Remplissez</h3>
+                        <p>Entrez votre ID joueur et complétez le formulaire</p>
+                    </div>
+                    <div class="instruction-step">
+                        <div class="step-number">3</div>
+                        <h3>Payez</h3>
+                        <p>Effectuez le paiement via votre méthode préférée</p>
+                    </div>
+                    <div class="instruction-step">
+                        <div class="step-number">4</div>
+                        <h3>Recevez</h3>
+                        <p>Recevez vos diamants après validation (1-6 heures)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <img src="/assets/images/payfusion-logo.png" alt="Pay Fusion" class="footer-logo" width="100" height="35">
+                <p>Votre solution de paiement sécurisée et multifonctionnelle</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="/">Accueil</a></li>
+                    <li><a href="/about.html">À propos</a></li>
+                    <li><a href="/services.html">Services</a></li>
+                    <li><a href="/crypto.html">Crypto</a></li>
+                    <li><a href="/freefire.html">Free Fire</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="/support.html">Centre d'aide</a></li>
+                    <li><a href="/legal.html">Mentions légales</a></li>
+                    <li><a href="/legal.html">Confidentialité</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>support@payfusion.com</p>
+                <p>+509 0000 0000</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Pay Fusion. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="/js/freefire.js"></script>
+</body>
+</html>

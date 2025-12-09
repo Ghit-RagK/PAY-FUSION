@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self'">
+    <title>Wallet - Pay Fusion</title>
+    <link rel="stylesheet" href="/assets/css/global.css">
+    <link rel="stylesheet" href="/assets/css/wallet.css">
+    <link rel="stylesheet" href="/assets/components/header.css">
+    <link rel="stylesheet" href="/assets/components/footer.css">
+    <link rel="stylesheet" href="/assets/components/navbar.css">
+    <link rel="stylesheet" href="/assets/components/buttons.css">
+    <link rel="stylesheet" href="/assets/components/forms.css">
+    <link rel="stylesheet" href="/assets/components/card.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-container">
+            <a href="/" class="logo">
+                <img src="/assets/images/payfusion-logo.png" alt="Pay Fusion Logo" width="120" height="40">
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/">Accueil</a></li>
+                    <li><a href="/about.html">À propos</a></li>
+                    <li><a href="/services.html">Services</a></li>
+                    <li><a href="/crypto.html">Crypto</a></li>
+                    <li><a href="/freefire.html">Free Fire</a></li>
+                    <li><a href="/wallet.html" class="active">Wallet</a></li>
+                    <li><a href="/payment.html">Paiement</a></li>
+                    <li><a href="/support.html">Support</a></li>
+                    <li><a href="/account.html">Mon Compte</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="/login.html" class="btn btn-outline">Connexion</a>
+                <a href="/register.html" class="btn btn-primary">Inscription</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="wallet-container">
+        <section class="wallet-hero">
+            <h1>Wallet Multidevises</h1>
+            <p class="hero-subtitle">Gérez vos fonds en HTG, USD et CAD dans un environnement sécurisé</p>
+        </section>
+
+        <section class="balance-section">
+            <div class="container">
+                <div class="balance-cards">
+                    <div class="balance-card">
+                        <div class="currency-info">
+                            <img src="/assets/images/htg-flag.png" alt="HTG" class="currency-flag" width="32" height="32">
+                            <div>
+                                <h3>Gourdes Haïtiennes</h3>
+                                <div class="balance-amount">0.00 HTG</div>
+                            </div>
+                        </div>
+                        <div class="balance-actions">
+                            <button class="btn btn-outline btn-small" onclick="openDepositModal('HTG')">Déposer</button>
+                            <button class="btn btn-outline btn-small" onclick="openWithdrawModal('HTG')">Retirer</button>
+                        </div>
+                    </div>
+
+                    <div class="balance-card">
+                        <div class="currency-info">
+                            <img src="/assets/images/usd-flag.png" alt="USD" class="currency-flag" width="32" height="32">
+                            <div>
+                                <h3>Dollars US</h3>
+                                <div class="balance-amount">0.00 USD</div>
+                            </div>
+                        </div>
+                        <div class="balance-actions">
+                            <button class="btn btn-outline btn-small" onclick="openDepositModal('USD')">Déposer</button>
+                            <button class="btn btn-outline btn-small" onclick="openWithdrawModal('USD')">Retirer</button>
+                        </div>
+                    </div>
+
+                    <div class="balance-card">
+                        <div class="currency-info">
+                            <img src="/assets/images/cad-flag.png" alt="CAD" class="currency-flag" width="32" height="32">
+                            <div>
+                                <h3>Dollars Canadiens</h3>
+                                <div class="balance-amount">0.00 CAD</div>
+                            </div>
+                        </div>
+                        <div class="balance-actions">
+                            <button class="btn btn-outline btn-small" onclick="openDepositModal('CAD')">Déposer</button>
+                            <button class="btn btn-outline btn-small" onclick="openWithdrawModal('CAD')">Retirer</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="total-balance">
+                    <h3>Solde Total Équivalent</h3>
+                    <div class="total-amount">0.00 HTG</div>
+                    <div class="conversion-info">
+                        <small>Taux: 1 USD = 157 HTG | 1 CAD = 115 HTG</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="conversion-section">
+            <div class="container">
+                <h2>Conversion de Devises</h2>
+                <form id="conversion-form" class="conversion-form">
+                    <div class="conversion-row">
+                        <div class="form-group">
+                            <label for="from-currency">De</label>
+                            <select id="from-currency" name="from_currency" required>
+                                <option value="HTG">HTG</option>
+                                <option value="USD">USD</option>
+                                <option value="CAD">CAD</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="amount">Montant</label>
+                            <input type="number" id="amount" name="amount" step="0.01" min="1" required placeholder="0.00">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="to-currency">À</label>
+                            <select id="to-currency" name="to_currency" required>
+                                <option value="USD">USD</option>
+                                <option value="HTG">HTG</option>
+                                <option value="CAD">CAD</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="conversion-result">
+                        <div id="conversion-output">...</div>
+                        <div class="rate-info">
+                            <small id="rate-info">Taux de change:</small>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Convertir</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="history-section">
+            <div class="container">
+                <h2>Historique des Transactions</h2>
+                <div class="history-filters">
+                    <select id="filter-type" class="filter-select">
+                        <option value="all">Toutes les transactions</option>
+                        <option value="deposit">Dépôts</option>
+                        <option value="withdrawal">Retraits</option>
+                        <option value="conversion">Conversions</option>
+                        <option value="payment">Paiements</option>
+                    </select>
+
+                    <select id="filter-currency" class="filter-select">
+                        <option value="all">Toutes les devises</option>
+                        <option value="HTG">HTG</option>
+                        <option value="USD">USD</option>
+                        <option value="CAD">CAD</option>
+                    </select>
+
+                    <input type="date" id="filter-date" class="filter-select">
+                </div>
+
+                <div class="history-table-container">
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Type</th>
+                                <th>Montant</th>
+                                <th>Devise</th>
+                                <th>Statut</th>
+                                <th>Détails</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-body">
+                            <tr>
+                                <td colspan="6" class="empty-history">Aucune transaction pour le moment</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals -->
+    <div id="deposit-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('deposit-modal')">&times;</span>
+            <h2>Déposer des Fonds</h2>
+            <form id="deposit-form">
+                <div class="form-group">
+                    <label for="deposit-currency">Devise</label>
+                    <select id="deposit-currency" name="currency" required>
+                        <option value="HTG">HTG</option>
+                        <option value="USD">USD</option>
+                        <option value="CAD">CAD</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="deposit-amount">Montant</label>
+                    <input type="number" id="deposit-amount" name="amount" step="0.01" min="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="deposit-method">Méthode de Paiement</label>
+                    <select id="deposit-method" name="method" required>
+                        <option value="">Sélectionnez</option>
+                        <option value="moncash">MonCash</option>
+                        <option value="natcash">NatCash</option>
+                        <option value="crypto">Crypto (USDT)</option>
+                        <option value="bank">Virement Bancaire</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="deposit-proof">Preuve de Paiement</label>
+                    <input type="file" id="deposit-proof" name="proof" accept=".png,.jpg,.jpeg,.pdf" required>
+                    <small>Formats acceptés: PNG, JPG, PDF (max 5Mo)</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="deposit-reference">Référence/ID Transaction</label>
+                    <input type="text" id="deposit-reference" name="reference" required placeholder="Numéro de transaction ou hash">
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-outline" onclick="closeModal('deposit-modal')">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Soumettre</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="withdraw-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('withdraw-modal')">&times;</span>
+            <h2>Retirer des Fonds</h2>
+            <form id="withdraw-form">
+                <div class="form-group">
+                    <label for="withdraw-currency">Devise</label>
+                    <select id="withdraw-currency" name="currency" required>
+                        <option value="HTG">HTG</option>
+                        <option value="USD">USD</option>
+                        <option value="CAD">CAD</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="withdraw-amount">Montant</label>
+                    <input type="number" id="withdraw-amount" name="amount" step="0.01" min="1" required>
+                    <small id="withdraw-balance">Solde disponible: 0.00</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="withdraw-method">Méthode de Retrait</label>
+                    <select id="withdraw-method" name="method" required>
+                        <option value="">Sélectionnez</option>
+                        <option value="moncash">MonCash</option>
+                        <option value="natcash">NatCash</option>
+                        <option value="bank">Virement Bancaire</option>
+                        <option value="crypto">Crypto (USDT)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="withdraw-account">Numéro de Compte/Destination</label>
+                    <input type="text" id="withdraw-account" name="account" required placeholder="Ex: +509XXXXXXXX ou adresse crypto">
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="withdraw-confirm" name="confirm" required>
+                    <label for="withdraw-confirm">Je confirme les détails de retrait</label>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-outline" onclick="closeModal('withdraw-modal')">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Demander le Retrait</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h4>Services</h4>
+            <ul>
+                <li><a href="/wallet.html">Wallet Multidevises</a></li>
+                <li><a href="/crypto.html">Transactions Crypto</a></li>
+                <li><a href="/freefire.html">Recharges Free Fire</a></li>
+                <li><a href="/payment.html">Paiements Locaux</a></li>
+                <li><a href="/services.html">Voir tous les services</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Support</h4>
+            <ul>
+                <li><a href="/support.html">Centre d'aide</a></li>
+                <li><a href="/legal.html">Conditions d'utilisation</a></li>
+                <li><a href="/legal.html">Politique de confidentialité</a></li>
+                <li><a href="/legal.html">Politique AML/KYC</a></li>
+                <li><a href="/support.html#faq">FAQ</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Contact</h4>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" width="16" height="16">
+                    </div>
+                    <div class="contact-text">
+                        <strong>Support Email</strong>
+                        <span>payfusionhaiti@gmail.com</span>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <img src="https://cdn-icons-png.flaticon.com/512/455/455705.png" alt="Phone" width="16" height="16">
+                    </div>
+                    <div class="contact-text">
+                        <strong>Téléphone Support</strong>
+                        <span>+509 3944 2808</span>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" alt="Hours" width="16" height="16">
+                    </div>
+                    <div class="contact-text">
+                        <strong>Heures d'ouverture</strong>
+                        <span>Lun - Ven: 8h - 18h<br>Samedi: 9h - 14h</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="social-links">
+                <a href="#" class="social-link" aria-label="WhatsApp">
+                    <img src="https://cdn-icons-png.flaticon.com/512/220/220236.png" alt="WhatsApp" width="20" height="20">
+                </a>
+                <a href="#" class="social-link" aria-label="Facebook">
+                    <img src="https://cdn-icons-png.flaticon.com/512/220/220200.png" alt="Facebook" width="20" height="20">
+                </a>
+                <a href="#" class="social-link" aria-label="Instagram">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" width="20" height="20">
+                </a>
+                <a href="#" class="social-link" aria-label="Telegram">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" width="20" height="20">
+                </a>
+            </div>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Méthodes de Paiement</h4>
+            <div class="payment-methods-footer">
+                <p>Nous acceptons:</p>
+                <div class="payment-icons">
+                    <div class="payment-icon">
+                        <img src="/assets/images/moncash-logo.png" alt="MonCash">
+                    </div>
+                    <div class="payment-icon">
+                        <img src="/assets/images/natcash-logo.png" alt="NatCash">
+                    </div>
+                    <div class="payment-icon">
+                        <img src="/assets/images/usdt-logo.png" alt="USDT">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="newsletter">
+                <h4>Newsletter</h4>
+                <p>Recevez les dernières offres et nouveautés</p>
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="Votre email" required>
+                    <button type="submit" class="newsletter-btn">S'abonner</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2024 Pay Fusion. Tous droits réservés.</p>
+        <div class="footer-bottom-links">
+            <a href="/legal.html">Mentions légales</a>
+            <a href="/legal.html#privacy">Confidentialité</a>
+            <a href="/legal.html#cookies">Cookies</a>
+            <a href="/support.html#contact">Nous contacter</a>
+        </div>
+    </div>
+</footer>

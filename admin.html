@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self'">
+    <title>Administration - Pay Fusion</title>
+    <link rel="stylesheet" href="/assets/css/global.css">
+    <link rel="stylesheet" href="/assets/css/admin.css">
+</head>
+<body>
+    <div class="admin-container" id="admin-container" style="display: none;">
+        <header class="admin-header">
+            <h1>Administration Pay Fusion</h1>
+            <div class="admin-user">
+                <span id="admin-email"></span>
+                <button onclick="logoutAdmin()" class="btn btn-outline btn-small">Déconnexion</button>
+            </div>
+        </header>
+
+        <div class="admin-layout">
+            <nav class="admin-sidebar">
+                <ul>
+                    <li><a href="#dashboard" onclick="showAdminSection('dashboard')" class="active">Tableau de Bord</a></li>
+                    <li><a href="#transactions" onclick="showAdminSection('transactions')">Transactions</a></li>
+                    <li><a href="#users" onclick="showAdminSection('users')">Utilisateurs</a></li>
+                    <li><a href="#payments" onclick="showAdminSection('payments')">Paiements en Attente</a></li>
+                    <li><a href="#freefire" onclick="showAdminSection('freefire')">Commandes Free Fire</a></li>
+                    <li><a href="#crypto" onclick="showAdminSection('crypto')">Dépôts Crypto</a></li>
+                    <li><a href="#wallet" onclick="showAdminSection('wallet')">Demandes Wallet</a></li>
+                    <li><a href="#settings" onclick="showAdminSection('settings')">Paramètres</a></li>
+                    <li><a href="#logs" onclick="showAdminSection('logs')">Journaux</a></li>
+                </ul>
+            </nav>
+
+            <main class="admin-content">
+                <!-- Tableau de Bord -->
+                <section id="dashboard-section" class="admin-section active">
+                    <h2>Tableau de Bord</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <h3>Utilisateurs</h3>
+                            <div class="stat-number" id="stat-users">0</div>
+                            <div class="stat-trend">+0 aujourd'hui</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Transactions</h3>
+                            <div class="stat-number" id="stat-transactions">0</div>
+                            <div class="stat-trend">+0 aujourd'hui</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Revenus</h3>
+                            <div class="stat-number" id="stat-revenue">0 HTG</div>
+                            <div class="stat-trend">+0 aujourd'hui</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>En Attente</h3>
+                            <div class="stat-number" id="stat-pending">0</div>
+                            <div class="stat-trend">À traiter</div>
+                        </div>
+                    </div>
+
+                    <div class="recent-activity">
+                        <h3>Activité Récente</h3>
+                        <div class="activity-list" id="recent-activity">
+                            <!-- Activités récentes -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Transactions -->
+                <section id="transactions-section" class="admin-section">
+                    <h2>Gestion des Transactions</h2>
+                    <div class="filters">
+                        <input type="date" id="trans-date">
+                        <select id="trans-status">
+                            <option value="all">Tous les statuts</option>
+                            <option value="pending">En attente</option>
+                            <option value="approved">Approuvé</option>
+                            <option value="rejected">Rejeté</option>
+                            <option value="completed">Complété</option>
+                        </select>
+                        <select id="trans-type">
+                            <option value="all">Tous les types</option>
+                            <option value="deposit">Dépôt</option>
+                            <option value="withdrawal">Retrait</option>
+                            <option value="payment">Paiement</option>
+                            <option value="conversion">Conversion</option>
+                        </select>
+                        <button onclick="loadTransactions()" class="btn btn-primary">Filtrer</button>
+                    </div>
+
+                    <div class="transactions-table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Utilisateur</th>
+                                    <th>Type</th>
+                                    <th>Montant</th>
+                                    <th>Date</th>
+                                    <th>Statut</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="transactions-body">
+                                <!-- Transactions -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Utilisateurs -->
+                <section id="users-section" class="admin-section">
+                    <h2>Gestion des Utilisateurs</h2>
+                    <div class="search-box">
+                        <input type="text" id="user-search" placeholder="Rechercher par email ou nom...">
+                        <button onclick="searchUsers()" class="btn btn-primary">Rechercher</button>
+                    </div>
+
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nom</th>
+                                <th>Email</th>
+                                <th>Téléphone</th>
+                                <th>Inscription</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="users-body">
+                            <!-- Utilisateurs -->
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Paiements en Attente -->
+                <section id="payments-section" class="admin-section">
+                    <h2>Paiements en Attente de Validation</h2>
+                    <div id="pending-payments-list">
+                        <!-- Paiements en attente -->
+                    </div>
+                </section>
+
+                <!-- Free Fire -->
+                <section id="freefire-section" class="admin-section">
+                    <h2>Commandes Free Fire</h2>
+                    <div id="freefire-orders-list">
+                        <!-- Commandes Free Fire -->
+                    </div>
+                </section>
+
+                <!-- Crypto -->
+                <section id="crypto-section" class="admin-section">
+                    <h2>Dépôts Crypto en Attente</h2>
+                    <div id="crypto-deposits-list">
+                        <!-- Dépôts crypto -->
+                    </div>
+                </section>
+
+                <!-- Wallet -->
+                <section id="wallet-section" class="admin-section">
+                    <h2>Demandes Wallet</h2>
+                    <div class="wallet-requests">
+                        <div class="request-type">
+                            <h3>Dépôts en Attente</h3>
+                            <div id="wallet-deposits-list"></div>
+                        </div>
+                        <div class="request-type">
+                            <h3>Retraits en Attente</h3>
+                            <div id="wallet-withdrawals-list"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Paramètres -->
+                <section id="settings-section" class="admin-section">
+                    <h2>Paramètres Système</h2>
+                    <form id="system-settings">
+                        <div class="form-group">
+                            <label for="usd-rate">Taux USD/HTG</label>
+                            <input type="number" id="usd-rate" step="0.01" value="157" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cad-rate">Taux CAD/HTG</label>
+                            <input type="number" id="cad-rate" step="0.01" value="115" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="min-deposit">Dépôt minimum (HTG)</label>
+                            <input type="number" id="min-deposit" value="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="withdrawal-fee">Frais de retrait (%)</label>
+                            <input type="number" id="withdrawal-fee" step="0.01" value="2" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    </form>
+                </section>
+
+                <!-- Journaux -->
+                <section id="logs-section" class="admin-section">
+                    <h2>Journaux Système</h2>
+                    <div class="logs-controls">
+                        <input type="date" id="log-date">
+                        <select id="log-level">
+                            <option value="all">Tous les niveaux</option>
+                            <option value="info">Info</option>
+                            <option value="warning">Warning</option>
+                            <option value="error">Error</option>
+                            <option value="security">Security</option>
+                        </select>
+                        <button onclick="loadLogs()" class="btn btn-primary">Charger</button>
+                        <button onclick="exportLogs()" class="btn btn-outline">Exporter</button>
+                    </div>
+                    <div class="logs-container">
+                        <pre id="logs-content">Chargement des journaux...</pre>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <div id="admin-login" style="display: none;">
+        <div class="login-container">
+            <h2>Administration Pay Fusion</h2>
+            <form id="admin-login-form">
+                <div class="form-group">
+                    <label for="admin-email-input">Email</label>
+                    <input type="email" id="admin-email-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="admin-password">Mot de passe</label>
+                    <input type="password" id="admin-password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Connexion</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/admin.js"></script>
+</body>
+</html>

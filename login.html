@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self'">
+    <title>Connexion - Pay Fusion</title>
+    <link rel="stylesheet" href="/assets/css/global.css">
+    <link rel="stylesheet" href="/assets/css/login.css">
+    <link rel="stylesheet" href="/assets/components/buttons.css">
+    <link rel="stylesheet" href="/assets/components/forms.css">
+</head>
+<body>
+    <div class="login-page">
+        <header class="login-header">
+            <a href="/" class="logo">
+                <img src="/assets/images/payfusion-logo.png" alt="Pay Fusion" width="150" height="50">
+            </a>
+        </header>
+
+        <main class="login-container">
+            <div class="login-card">
+                <h1>Connexion à Pay Fusion</h1>
+                <p class="login-subtitle">Accédez à votre compte sécurisé</p>
+
+                <form id="login-form" class="login-form">
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required placeholder="votre@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Mot de passe *</label>
+                        <input type="password" id="password" name="password" required minlength="8">
+                        <div class="password-toggle">
+                            <button type="button" onclick="togglePassword()" class="toggle-btn">Afficher</button>
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="remember" name="remember">
+                            <span>Se souvenir de moi</span>
+                        </label>
+                        <a href="#forgot-password" class="forgot-password">Mot de passe oublié?</a>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-full">Se connecter</button>
+
+                    <div class="form-footer">
+                        <p>Nouveau sur Pay Fusion? <a href="/register.html">Créer un compte</a></p>
+                    </div>
+                </form>
+
+                <div class="security-notice">
+                    <h3>⚠️ Sécurité du Compte</h3>
+                    <ul>
+                        <li>Utilisez un mot de passe fort et unique</li>
+                        <li>Activez l'authentification à deux facteurs</li>
+                        <li>Ne partagez jamais vos identifiants</li>
+                        <li>Vérifiez l'URL avant de vous connecter</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="login-info">
+                <h2>Pourquoi choisir Pay Fusion?</h2>
+                <div class="features-list">
+                    <div class="feature">
+                        <h3>🔒 Sécurité Maximale</h3>
+                        <p>Chiffrement SSL/TLS, 2FA, et audits de sécurité réguliers</p>
+                    </div>
+                    <div class="feature">
+                        <h3>💰 Multidevises</h3>
+                        <p>Gérez HTG, USD et CAD dans un seul portefeuille</p>
+                    </div>
+                    <div class="feature">
+                        <h3>⚡ Transactions Rapides</h3>
+                        <p>Validation manuelle en 1-6 heures seulement</p>
+                    </div>
+                    <div class="feature">
+                        <h3>🎮 Free Fire</h3>
+                        <p>Recharges instantanées avec bonus exclusifs</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h4>Services</h4>
+            <ul>
+                <li><a href="/wallet.html">Wallet Multidevises</a></li>
+                <li><a href="/crypto.html">Transactions Crypto</a></li>
+                <li><a href="/freefire.html">Recharges Free Fire</a></li>
+                <li><a href="/payment.html">Paiements Locaux</a></li>
+                <li><a href="/services.html">Voir tous les services</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Support</h4>
+            <ul>
+                <li><a href="/support.html">Centre d'aide</a></li>
+                <li><a href="/legal.html">Conditions d'utilisation</a></li>
+                <li><a href="/legal.html">Politique de confidentialité</a></li>
+                <li><a href="/legal.html">Politique AML/KYC</a></li>
+                <li><a href="/support.html#faq">FAQ</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Contact</h4>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" width="16" height="16">
+                    </div>
+                    <div class="contact-text">
+                        <strong>Support Email</strong>
+                        <span>payfusionhaiti@gmail.com</span>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <img src="https://cdn-icons-png.flaticon.com/512/455/455705.png" alt="Phone" width="16" height="16">
+                    </div>
+                    <div class="contact-text">
+                        <strong>Téléphone Support</strong>
+                        <span>+509 3944 2808</span>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" alt="Hours" width="16" height="16">
+                    </div>
+                    <div class="contact-text">
+                        <strong>Heures d'ouverture</strong>
+                        <span>Lun - Ven: 8h - 18h<br>Samedi: 9h - 14h</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="social-links">
+                <a href="#" class="social-link" aria-label="WhatsApp">
+                    <img src="https://cdn-icons-png.flaticon.com/512/220/220236.png" alt="WhatsApp" width="20" height="20">
+                </a>
+                <a href="#" class="social-link" aria-label="Facebook">
+                    <img src="https://cdn-icons-png.flaticon.com/512/220/220200.png" alt="Facebook" width="20" height="20">
+                </a>
+                <a href="#" class="social-link" aria-label="Instagram">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" width="20" height="20">
+                </a>
+                <a href="#" class="social-link" aria-label="Telegram">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" width="20" height="20">
+                </a>
+            </div>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Méthodes de Paiement</h4>
+            <div class="payment-methods-footer">
+                <p>Nous acceptons:</p>
+                <div class="payment-icons">
+                    <div class="payment-icon">
+                        <img src="/assets/images/moncash-logo.png" alt="MonCash">
+                    </div>
+                    <div class="payment-icon">
+                        <img src="/assets/images/natcash-logo.png" alt="NatCash">
+                    </div>
+                    <div class="payment-icon">
+                        <img src="/assets/images/usdt-logo.png" alt="USDT">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="newsletter">
+                <h4>Newsletter</h4>
+                <p>Recevez les dernières offres et nouveautés</p>
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="Votre email" required>
+                    <button type="submit" class="newsletter-btn">S'abonner</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2024 Pay Fusion. Tous droits réservés.</p>
+        <div class="footer-bottom-links">
+            <a href="/legal.html">Mentions légales</a>
+            <a href="/legal.html#privacy">Confidentialité</a>
+            <a href="/legal.html#cookies">Cookies</a>
+            <a href="/support.html#contact">Nous contacter</a>
+        </div>
+    </div>
+</footer>
